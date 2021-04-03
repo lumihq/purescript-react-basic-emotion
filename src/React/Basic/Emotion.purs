@@ -82,7 +82,6 @@ import Data.Number.Format (toString) as Number
 import Data.String as String
 import Foreign as F
 import Foreign.Object (Object, fromHomogeneous)
-import Prim.TypeError (class Warn, Text)
 import React.Basic (JSX, ReactComponent)
 import Type.Row.Homogeneous (class Homogeneous)
 import Unsafe.Coerce (unsafeCoerce)
@@ -199,16 +198,18 @@ merge = unsafeCoerce
 str :: String -> StyleProperty
 str = unsafeCoerce
 
-int
-  :: Warn (Text "`int` is deprecated and may be removed in future versions. Prefer `str` or one of the unit combinators like `px` or `em` instead.")
-  => Int
-  -> StyleProperty
+-- | Create a unitless `Int` property.
+-- |
+-- | Wherever units may be specified, use unit combinators like `px`
+-- | or `em` instead.
+int :: Int -> StyleProperty
 int = unsafeCoerce
 
-num
-  :: Warn (Text "`num` is deprecated and may be removed in future versions. Prefer `str` or one of the unit combinators like `px` or `em` instead.")
-  => Number
-  -> StyleProperty
+-- | Create a unitless `Number` property.
+-- |
+-- | Wherever units may be specified, use unit combinators like `px`
+-- | or `em` instead.
+num :: Number -> StyleProperty
 num = unsafeCoerce
 
 fallbacks :: Array StyleProperty -> StyleProperty
